@@ -5,8 +5,9 @@ Project ini memiliki fitur login/register, custom burger, cart, dan dashboard se
 
 ---
 ## 👤 Identitas Pengembang
-* **Nama:** Riezky Maharani Nst
-* **Jurusan:** Teknologi Informasi
+* **Nama:** Riezky Maharani
+* **Jurusan:** Sistem Informasi
+* **Nim:** 240180110
 * **Tugas:** Project Pemesanan Web Toko Burger
 
 ## 🚀 Fitur Utama
