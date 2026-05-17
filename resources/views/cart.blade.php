@@ -70,14 +70,34 @@
 
             <div class="col-md-4">
                 <div class="card bg-dark border-warning p-3 text-white">
-                    <h5 class="fw-bold border-bottom pb-2">Ringkasan Harga</h5>
-                    <div class="d-flex justify-content-between mt-3">
-                        <span>Total Bayar:</span>
-                        <h4 class="text-warning fw-bold">Rp {{ number_format($totalSemua) }}</h4>
-                    </div>
-                    <hr>
-                    <a href="/checkout" class="btn btn-checkout py-2">LANJUT KE PEMBAYARAN</a>
-                </div>
+    <h5 class="fw-bold border-bottom pb-2">Ringkasan Harga</h5>
+    
+    <div class="d-flex justify-content-between mt-3">
+        <span>Total Awal:</span>
+        <span>Rp {{ number_format($totalSemua) }}</span>
+    </div>
+
+    @if($totalSemua >= 50000)
+        @php 
+            $diskon = $totalSemua * 0.10; // Diskon 10%
+            $totalAkhir = $totalSemua - $diskon;
+        @endphp
+        <div class="d-flex justify-content-between text-success small">
+            <span>Diskon Promo (10%):</span>
+            <span>-Rp {{ number_format($diskon) }}</span>
+        </div>
+    @else
+        @php $totalAkhir = $totalSemua; @endphp
+    @endif
+
+    <hr>
+    <div class="d-flex justify-content-between">
+        <span>Total Bayar:</span>
+        <h4 class="text-warning fw-bold">Rp {{ number_format($totalAkhir) }}</h4>
+    </div>
+    <hr>
+    <a href="/checkout" class="btn btn-checkout py-2">LANJUT KE PEMBAYARAN</a>
+</div>
             </div>
         </div>
     </div>

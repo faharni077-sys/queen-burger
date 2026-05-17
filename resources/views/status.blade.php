@@ -47,7 +47,7 @@
 
         // Otomatis pindah ke halaman menu setelah 8 detik
         setTimeout(() => {
-            window.location.href = "/menu";
+            window.location.href = "/riwayat";
         }, 8500);
     </script>
 

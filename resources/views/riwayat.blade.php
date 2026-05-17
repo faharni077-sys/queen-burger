@@ -8,6 +8,9 @@
                 <th>Total Bayar</th>
                 <th>Metode</th>
             </tr>
+            <div class="container mt-4 text-end">
+    <a href="/menu" class="btn btn-warning fw-bold px-4">← KEMBALI KE MENU UTAMA</a>
+</div>
         </thead>
         <tbody>
             @foreach($orders as $order)

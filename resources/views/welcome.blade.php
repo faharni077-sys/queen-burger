@@ -83,16 +83,20 @@
                             </div>
 
                             <hr>
-                            <label class="small mb-2">Sayur & Saus Gratis</label>
-                            <div class="row px-2">
-                                <div class="col-6"><input type="checkbox" name="request[]" value="Tomat"> Tomat</div>
-                                <div class="col-6"><input type="checkbox" name="request[]" value="Selada"> Selada</div>
-                                <div class="col-6"><input type="checkbox" name="request[]" value="Extra Sauce"> Extra Sauce</div>
-                            </div>
+                            <label class="small mb-2">Custom Sayur & Saus (Bisa Dikurangi/Ditambah)</label>
+<div class="d-flex align-items-center mb-2 justify-content-between bg-dark p-2 rounded">
+    <span>Selada (+1k)</span>
+    <input type="number" name="selada_qty" id="selada{{ $burger->id }}" value="0" min="0" class="form-control w-25 text-center" onchange="hitungTotal({{ $burger->id }}, {{ $burger->harga }})">
+</div>
 
-                            <hr>
-                            <label class="small mb-2">Catatan Khusus (Request Spesial)</label>
-                            <textarea name="catatan" class="form-control" placeholder="Contoh: Sayurnya sedikit aja, jangan pakai bawang bombay"></textarea>
+<div class="d-flex align-items-center mb-2 justify-content-between bg-dark p-2 rounded">
+    <span>Tomat (+1k)</span>
+    <input type="number" name="tomat_qty" id="tomat{{ $burger->id }}" value="0" min="0" class="form-control w-25 text-center" onchange="hitungTotal({{ $burger->id }}, {{ $burger->harga }})">
+</div>
+
+<hr>
+<label class="small mb-2">Catatan Khusus (Request Spesial)</label>
+<textarea name="catatan" class="form-control" placeholder="Contoh: Sayurnya sedikit aja, jangan pakai bawang bombay"></textarea>
 
                             <h4 class="text-warning fw-bold mt-4">Total: Rp <span id="textTotal{{ $burger->id }}">{{ number_format($burger->harga) }}</span></h4>
                         </div>
@@ -109,14 +113,19 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         function hitungTotal(id, hargaAwal) {
-            let roti = parseInt(document.getElementById('roti' + id).value);
-            let keju = parseInt(document.getElementById('qtyKeju' + id).innerText) * 5000;
-            let patty = parseInt(document.getElementById('qtyPatty' + id).innerText) * 10000;
-            
-            let total = hargaAwal + roti + keju + patty;
-            document.getElementById('textTotal' + id).innerText = total.toLocaleString();
-            document.getElementById('hiddenTotal' + id).value = total;
-        }
+    let roti = parseInt(document.getElementById('roti' + id).value);
+    let keju = parseInt(document.getElementById('keju' + id).value) * 5000;
+    let patty = parseInt(document.getElementById('patty' + id).value) * 10000;
+    
+    // Logika baru untuk sayur berbayar
+    let selada = parseInt(document.getElementById('selada' + id).value) * 1000;
+    let tomat = parseInt(document.getElementById('tomat' + id).value) * 1000;
+
+    let total = hargaAwal + roti + keju + patty + selada + tomat;
+
+    document.getElementById('textTotal' + id).innerText = total.toLocaleString();
+    document.getElementById('hiddenTotal' + id).value = total;
+}
 
         function tambah(item, id, hargaAwal) {
             let el = (item === 'keju') ? 'qtyKeju' + id : 'qtyPatty' + id;
