@@ -112,12 +112,14 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        function hitungTotal(id, hargaAwal) {
+      function hitungTotal(id, hargaAwal) {
     let roti = parseInt(document.getElementById('roti' + id).value);
-    let keju = parseInt(document.getElementById('keju' + id).value) * 5000;
-    let patty = parseInt(document.getElementById('patty' + id).value) * 10000;
     
-    // Logika baru untuk sayur berbayar
+    // PERBAIKAN: Ambil dari id 'valKeju' dan 'valPatty' sesuai HTML kamu
+    let keju = parseInt(document.getElementById('valKeju' + id).value) * 5000;
+    let patty = parseInt(document.getElementById('valPatty' + id).value) * 10000;
+    
+    // Logika untuk sayur berbayar (ini sudah benar)
     let selada = parseInt(document.getElementById('selada' + id).value) * 1000;
     let tomat = parseInt(document.getElementById('tomat' + id).value) * 1000;
 

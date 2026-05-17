@@ -93,3 +93,9 @@ Route::post('/bayar', function (Request $request) {
 Route::view('/about', 'about')->name('about');
 
 require __DIR__.'/auth.php';
+// Route untuk nampilin halaman Riwayat Pesanan
+Route::get('/riwayat', function () {
+    // Ambil data order, urutkan dari yang paling baru
+    $orders = \App\Models\Order::orderBy('created_at', 'desc')->get();
+    return view('riwayat', compact('orders'));
+})->middleware('auth')->name('riwayat');
